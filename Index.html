@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Date Proposal</title>
   <style>
+    /* General Styles */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -14,22 +15,23 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       overflow: hidden;
     }
 
     .container {
       background-color: white;
-      padding: 40px;
+      padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      max-width: 90%;
       width: 100%;
     }
 
     h1 {
       color: #e91e63;
       margin-bottom: 20px;
+      font-size: 2rem; /* Responsive font size */
     }
 
     .buttons {
@@ -37,23 +39,23 @@
       justify-content: center;
       gap: 10px;
       margin-top: 20px;
+      flex-wrap: wrap; /* Wrap buttons on small screens */
     }
 
-    button {
+    button, a.button {
       padding: 10px 20px;
-      font-size: 16px;
+      font-size: 1rem; /* Responsive font size */
       cursor: pointer;
       border: none;
       border-radius: 5px;
       transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
     }
 
     #yes-btn {
       background-color: #4caf50;
       color: white;
-      padding: 20px;
-      text-decoration: none;
-      border-radius: 5px;
     }
 
     #yes-btn:hover {
@@ -82,13 +84,34 @@
       50% { transform: translateY(-20px); }
       100% { transform: translateY(0); }
     }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+      }
+
+      .buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+      }
+
+      button, a.button {
+        width: 100%; /* Full-width buttons on mobile */
+        font-size: 0.9rem; /* Smaller font size for buttons */
+      }
+
+      .container {
+        padding: 15px; /* Reduce padding for smaller screens */
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Will you go on a date with me?</h1>
     <div class="buttons">
-      <a id="yes-btn" href="https://wa.me/8368997563?text=I%20will%20go%20with%20you" target="_blank">Yes</a>
+      <a id="yes-btn" class="button" href="https://wa.me/1234567890?text=I%20will%20go%20with%20you" target="_blank">Yes</a>
       <button id="no-btn">No</button>
     </div>
   </div>
@@ -97,6 +120,7 @@
     const noBtn = document.getElementById('no-btn');
     const body = document.body;
 
+    // Move the "No" button on hover
     noBtn.addEventListener('mouseover', () => {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
       const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -104,6 +128,7 @@
       noBtn.style.top = `${y}px`;
     });
 
+    // Move the "No" button on click
     noBtn.addEventListener('click', () => {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
       const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -111,7 +136,7 @@
       noBtn.style.top = `${y}px`;
     });
 
-    // Add floating hearts when the page loads for a more interactive feel
+    // Add floating hearts when the page loads
     for (let i = 0; i < 20; i++) {
       const heart = document.createElement('div');
       heart.classList.add('heart');
